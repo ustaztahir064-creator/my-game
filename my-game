@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tap Profit 2025</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { background: #0b0e11; color: white; text-align: center; font-family: 'Arial', sans-serif; overflow: hidden; }
+        .coin { width: 220px; margin-top: 50px; cursor: pointer; transition: 0.1s; filter: drop-shadow(0 0 15px #f3ba2f); }
+        .coin:active { transform: scale(0.9); }
+        .balance { font-size: 40px; margin-top: 20px; font-weight: bold; color: #f3ba2f; }
+    </style>
+</head>
+<body>
+    <div class="balance">$<span id="score">0</span></div>
+    <img id="coin" class="coin" src="https://cryptologos.cc/logos/toncoin-ton-logo.png" onclick="tap()">
+    
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        let score = parseInt(localStorage.getItem('score')) || 0;
+        document.getElementById('score').innerText = score;
+
+        function tap() {
+            score++;
+            document.getElementById('score').innerText = score;
+            localStorage.setItem('score', score);
+            tg.HapticFeedback.impactOccurred('light');
+        }
+    </script>
+</body>
+</html>
